@@ -52,7 +52,7 @@ function onStartBtnClick() {
   dateTimeInput.disabled = true;
   timerId = setInterval(() => {
     let time = timeLeft - Date.now();
-    if (time > 0) {
+    if (time >= 1000) {
       let data = convertMs(time);
       days.textContent = data.days;
       hours.textContent = data.hours;
