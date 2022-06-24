@@ -52,12 +52,13 @@ function onStartBtnClick() {
   dateTimeInput.disabled = true;
   timerId = setInterval(() => {
     let time = timeLeft - Date.now();
-    if (time <= 1000) {
+    console.log(time)
+    if (time >= 0) {
       let data = convertMs(time);
-      days.textContent = data.days;
-      hours.textContent = data.hours;
-      minutes.textContent = data.minutes;
-      seconds.textContent = data.seconds;
+      days.textContent = addLeadingZero(data.days);
+      hours.textContent =addLeadingZero(data.hours);
+      minutes.textContent =addLeadingZero(data.minutes) ;
+      seconds.textContent =addLeadingZero(data.seconds); 
     } else {
       clearInterval(timerId);
       startBtn.disabled = false;
@@ -67,4 +68,11 @@ function onStartBtnClick() {
   Notiflix.Notify.success('Timer Started', {
     position: 'center-top',
   });
+}
+
+
+
+function addLeadingZero(value) {
+  const stringValue = String(value);
+  return stringValue.padStart(2, '0');
 }
